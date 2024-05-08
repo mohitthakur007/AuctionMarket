@@ -194,7 +194,24 @@ app.post('/bid/create', authenticateJwt, (req, res) => {
   }
 });
 
-  
+//Sell an item to a particular bidder
+app.post('/post/sell', authenticateJwt, (req, res) => {
+  const { postId, amount, bidderId} = req.body;
+  const user = users.find(a=> a.username===req.user.username)
+  const post= posts.find(a=> a.id===postId);
+  if(post.createdBy===user.id){
+    const bid = post.bidsReceived.find(a => a.createdBy===bidderId)
+    if(bid){
+      post.status = "SOLD";
+      res.status(200).json({ message: "Product sold successfully"});
+    } else {
+      res.status(403).json({ error: "No bids found from this bidder on this product" });
+    }
+  } else {
+    res.status(403).json({ error: "You cannot sell others product" });
+  }
+});
+
 // server code
 
 app.listen(port, () => {
