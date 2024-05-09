@@ -1,21 +1,26 @@
-import './App.css'
+import "./App.css";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Login from "./Login";
+
+
 function App() {
   return (
     <>
-    <label>Username</label>
-    <input type="text" placeholder='enter username'></input>
-    <br></br>
-    <br></br>
-    <label>Password</label>
-    <input type="password" placeholder='enter password'></input>
-    <br></br>
-    <br></br>
-    
-
-    <button>Login</button>
-</>
-    
-  )
+      <AppBar position="static" color="primary">
+        <Toolbar variant="dense">
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Auction Market
+          </Typography>
+          <Button color="inherit">Login</Button>
+          <Button color="inherit">Sign up</Button>
+        </Toolbar>
+      </AppBar>
+      <Login></Login>
+    </>
+  );
 }
 
-export default App
+export default App;
