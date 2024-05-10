@@ -1,9 +1,11 @@
 const express = require('express')
 const jwt = require('jsonwebtoken');
+const cors = require('cors')
 
 const app = express()
 const port = 3000
 app.use(express.json());
+app.use(cors());
 const secretKey = "TOKEN_SECRET";
 
 let users = [];
@@ -45,7 +47,7 @@ app.get('/ulanding-page', authenticateJwt, (req, res) => {
   res.send('Hello World User!')
 })
 
-app.get('/ulog-in', (req, res) => {
+app.post('/ulog-in', (req, res) => {
     const {username, password} = req.body;
     const user = users.find(a=> a.username===username && a.password===password)
     if(user){
