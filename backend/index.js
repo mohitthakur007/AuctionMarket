@@ -57,7 +57,7 @@ app.post('/ulog-in', (req, res) => {
         res.status(403).json({message:"username or password incorrect"});
     }
     
-})
+});
 
 app.post('/usign-up', (req, res) => {
     const {username, password} = req.body;
@@ -71,6 +71,10 @@ app.post('/usign-up', (req, res) => {
         res.json({message: "user created successfully and logged in", token});
     }
 });
+
+app.get('/ume', authenticateJwt, (req, res) => {
+  res.json({username: req.user.username});
+})
 
 /*
 admin routes
@@ -107,16 +111,16 @@ app.get('/alanding-page', authenticateJwt, (req, res) => {
 // POST endpoint for creating a new post
 app.post('/post/create', authenticateJwt, (req, res) => {
   const { name, desc, qty, unit, photoURL, minPrice } = req.body;
-
+  console.log(req.body);
   if (name && desc && qty && unit && photoURL && minPrice) {
     const newPost = {
       id: posts.length+1,
       name,
       desc,
-      qty,
-      unit,
+      qty: parseInt(qty),
+      unit: parseInt(unit),
       photoURL,
-      minPrice,
+      minPrice: parseInt(minPrice),
       finalPrice: 0,
       bidsReceived: [],
       status: "CREATED"
