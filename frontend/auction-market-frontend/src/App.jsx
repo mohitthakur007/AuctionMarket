@@ -15,6 +15,8 @@ import Signup from "./Signup";
 import Navbar from "./Navbar";
 import AddPost from "./AddPost";
 import Posts from "./Posts";
+import Post from "./Post";
+
 
 function App() {
   const navigateTo = (path) => {
@@ -29,6 +31,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/posts" element={<Posts />} />
+          <Route exact path="/post/:postId" element={<Post />} />
           <Route exact path="/post/add" element={<AddPost />} />
 
           <Route path="*" element={<Navigate to="/login" replace />} />
