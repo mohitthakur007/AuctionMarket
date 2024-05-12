@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 function ProductGrid(props) {
   const itemData = props.itemData;
   const navigate = useNavigate();
+  console.log(itemData);
   return (
     <ImageList cols={5}>
       {itemData.map((item) => (
@@ -24,7 +25,7 @@ function ProductGrid(props) {
             subtitle={"Rs." + item.minPrice}
             actionIcon={
               <IconButton
-                onClick={() => navigate("/post/"+item.id)}
+                onClick={() => navigate("/post/"+item._id)}
                 sx={{ color: "rgba(255, 255, 255, 0.54)" }}
                 aria-label={`info about ${item.title}`}
               >
